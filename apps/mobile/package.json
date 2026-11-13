@@ -11,6 +11,7 @@
   "devDependencies": {
     "@crm/supabase": "workspace:*",
     "@crm/types": "workspace:*",
+    "@crm/utils": "workspace:*",
     "@types/react": "~19.3.0",
     "typescript": "~6.0.3"
   },
