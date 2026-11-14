@@ -1,6 +1,9 @@
 import { createClient } from '@supabase/supabase-js'
 import type { Cliente, Endereco, NovoCliente, NovoEndereco } from '@crm/types'
 
+// Re-exporta tipos do supabase-js para os apps não precisarem instalar o pacote diretamente
+export type { Session, User } from '@supabase/supabase-js'
+
 //Recebe credenciais como parameters
 export function createSupabaseClient(url: string, anonKey: string) {
     return createClient(url, anonKey)
