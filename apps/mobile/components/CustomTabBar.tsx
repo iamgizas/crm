@@ -1,23 +1,30 @@
 import { BlurView } from 'expo-blur'
 import { Ionicons } from '@expo/vector-icons'
 import { TouchableOpacity, View, StyleSheet, useColorScheme } from 'react-native'
-import type { BottomTabBarProps } from '@react-navigation/bottom-tabs'
 import { router } from 'expo-router'
 import { Colors } from '../constants/Colors'
 
+// Tipo mínimo que a gente precisa do state — evita conflito entre versões do React Navigation
+type TabState = {
+  index: number
+  routes: { key: string; name: string }[]
+}
+
 const ICONES: Record<string, { ativo: string; inativo: string }> = {
-  'dashboard':       { ativo: 'grid',     inativo: 'grid-outline'     },
-  'clientes/index':  { ativo: 'people',   inativo: 'people-outline'   },
-  'configuracoes':   { ativo: 'settings', inativo: 'settings-outline' },
+  'dashboard':          { ativo: 'grid',      inativo: 'grid-outline'      },
+  'negociacoes':        { ativo: 'briefcase', inativo: 'briefcase-outline' },
+  'clientes/index':     { ativo: 'people',    inativo: 'people-outline'    },
+  'configuracoes':      { ativo: 'settings',  inativo: 'settings-outline'  },
 }
 
 const ROTAS: Record<string, string> = {
-  'dashboard':       '/(tabs)/dashboard',
-  'clientes/index':  '/(tabs)/clientes/',
-  'configuracoes':   '/(tabs)/configuracoes',
+  'dashboard':          '/(tabs)/dashboard',
+  'negociacoes':        '/(tabs)/negociacoes',
+  'clientes/index':     '/(tabs)/clientes/',
+  'configuracoes':      '/(tabs)/configuracoes',
 }
 
-export function CustomTabBar({ state }: Pick<BottomTabBarProps, 'state'>) {
+export function CustomTabBar({ state }: { state: TabState }) {
   const scheme = useColorScheme() ?? 'dark'
   const cores = Colors[scheme]
 
@@ -28,7 +35,7 @@ export function CustomTabBar({ state }: Pick<BottomTabBarProps, 'state'>) {
         tint={scheme === 'dark' ? 'dark' : 'light'}
         style={styles.container}
       >
-        {state.routes.map((route, index) => {
+        {state.routes.map((route: TabState['routes'][number], index: number) => {
           const ativo = state.index === index
           const icone = ICONES[route.name]
 

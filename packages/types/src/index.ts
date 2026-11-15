@@ -28,3 +28,19 @@ export interface Endereco {
 
 export type NovoCliente = Omit<Cliente, 'id' | 'criado_em' | 'atualizado_em'>
 export type NovoEndereco = Omit<Endereco, 'id' | 'criado_em'>
+
+export type StatusNegociacao = 'em_negociacao' | 'ganho' | 'perdido' | 'vencido'
+
+export interface Negociacao {
+  id: string
+  cliente_id: string
+  titulo: string
+  valor: number
+  status: StatusNegociacao
+  data_fechamento?: string
+  criado_em: string
+  atualizado_em: string
+}
+
+// Para criar uma negociação, não passamos id nem timestamps
+export type NovaNegociacao = Omit<Negociacao, 'id' | 'criado_em' | 'atualizado_em'>
