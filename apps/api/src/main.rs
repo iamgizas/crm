@@ -1,3 +1,9 @@
+mod errors;
+mod db;
+mod auth;
+mod models;
+mod routes;
+
 use axum::{Router, extract::State, http::StatusCode, routing::get};
 use sqlx::{PgPool, postgres::PgPoolOptions};
 use std::time::Duration;
@@ -27,6 +33,7 @@ async fn main() {
 
         let app = Router::new()
             .route("/health", get(health))
+            .merge(routes::rotas())
             .with_state(pool);
 
         let listener = tokio::net::TcpListener::bind("0.0.0.0:3000")
