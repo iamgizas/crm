@@ -4,3 +4,8 @@ node_modules/
 .env.local
 dist/
 .next/
+context.md
+api_prompt.md
+
+# Rust:
+target/
