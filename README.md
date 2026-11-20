@@ -149,4 +149,4 @@ pnpm dev
 
 ## Licença
 
-Privado — todos os direitos reservados.
+Distribuído sob a licença [MIT](LICENSE). Você pode usar, copiar, modificar e distribuir este código livremente, desde que mantenha o aviso de copyright.
